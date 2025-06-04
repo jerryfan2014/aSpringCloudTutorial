@@ -1,5 +1,6 @@
 package com.kangda.controller;
 
+import com.kangda.User;
 import  org.springframework.beans.factory.annotation.Value;
 import  org.springframework.web.bind.annotation.GetMapping;
 import  org.springframework.web.bind.annotation.PathVariable;
@@ -14,5 +15,12 @@ public  class  ProviderController {
     public  String getNacosService(@PathVariable("str") String str) {
         return  "<h2>服务访问成功！</h2>服务名称："+appName+"， 端口号："
                 + serverPort +"<br /> 传入的参数：" + str;
+    }
+
+
+    @GetMapping("/provider/userInfo")
+    public User getUserInfo(){
+        //从数据库读取用户信息
+        return new User(100,"tom");
     }
 }
