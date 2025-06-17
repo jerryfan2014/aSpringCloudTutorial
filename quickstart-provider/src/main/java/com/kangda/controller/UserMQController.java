@@ -14,7 +14,8 @@ public class UserMQController {
     private UserMQService userMQService;
 
     @PostMapping("/mq/sendUser")
-    public void sendUserMessage(User user) {
+    public String sendUserMessage(User user) {
         userMQService.sendUser(user);
+        return "User sent!";
     }
 }
