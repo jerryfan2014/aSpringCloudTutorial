@@ -1,0 +1,54 @@
+#修改tomcat启动端口为80
+server:
+  port: 80
+#添加数据源
+spring:
+  application:
+    name: quickstart-user
+  config:
+    import: optional:nacos:quickstart-user-dev.yaml
+  datasource:
+    url: jdbc:mysql://localhost:3308/test?useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: 9e29c78d-8d7b-43ae-ae68-62ccad24bf87
+#      config:
+#        server-addr: 127.0.0.1:8848
+#        namespace: 9e29c78d-8d7b-43ae-ae68-62ccad24bf87
+#        shared-configs:
+#          - data-id: quickstart-user-dev.yaml
+#            group: DEFAULT_GROUP
+#            refresh: true
+  zipkin:
+    base-url: http://127.0.0.1:9411 # Zipkin服务端地址
+    sender:
+      type: web # 发送器类型
+  sleuth:
+    sampler:
+      probability: 1.0 #采样率
+
+#  redis:
+#    host: 127.0.0.1
+#    port: 6379
+  servlet:
+    multipart:
+      max-file-size: 10240000
+      max-request-size: 60000000
+      enabled: true
+#  rabbitmq:
+#    host: localhost
+#    port: 5672
+#    username: guest
+#    password: guest
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+
