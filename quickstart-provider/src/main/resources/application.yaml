@@ -8,3 +8,19 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+        namespace: 9e29c78d-8d7b-43ae-ae68-62ccad24bf87
+    stream:
+      bindings:
+        orderOutput: # 自定义输出通道名称
+          destination: orders-topic  # RabbitMQ交换器名称
+          binder: rabbit
+      binders:
+        rabbit:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 5672
+                username: guest
+                password: guest

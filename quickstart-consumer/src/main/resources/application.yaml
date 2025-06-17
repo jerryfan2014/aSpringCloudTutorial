@@ -8,3 +8,19 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+    stream:
+      bindings:
+        orderInput: # 自定义输入通道名称
+          destination: orders-topic  # 与生产者一致
+          group: notification-group  # 消费者组（确保负载均衡/持久化）
+          binder: rabbit
+      binders:
+        rabbit: # 配置同生产者
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 5672
+                username: guest
+                password: guest

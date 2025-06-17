@@ -13,7 +13,12 @@ spring:
         locator:
           enabled: true
       routes:
-        - id: quickstart-gateway
+        - id: quickstart-provider
           uri: lb://quickstart-provider
           predicates:
             - Path=/provider/**, /nacos/service/**
+
+        - id: quickstart-consumer
+          uri: lb://quickstart-consumer
+          predicates:
+            - Path=/consumer/**, /nacos/service/**
